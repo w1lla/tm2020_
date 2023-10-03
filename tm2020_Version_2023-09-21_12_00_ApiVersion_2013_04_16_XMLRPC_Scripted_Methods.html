@@ -1,0 +1,580 @@
+<html>
+<style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
+<body>
+<body>
+TM2020 Server API Version: 2013-04-16<br><br>
+TM2020 Server Dedicated Version: Trackmania date=2023-09-21_12_00 git=121577-05ef3895994 GameVersion=3.3.0...<br>
+<br>
+=====================================
+XmlRpc scripted methods
+=====================================
+<br>
+<br>
+---------
+Methods
+---------
+<br>
+<br>
+<table style="width:100%">
+  <tr>
+    <th>Method</th>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Description</th>
+    <th>Data</th>
+  </tr>
+  <br>
+  <tr>
+    <td>### XmlRpc.EnableCallbacks</td>
+    <td>* Name: XmlRpc.EnableCallbacks</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Enable or disable script callbacks.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"true" //< "true" to enable callbacks, "false" to disable them.<br>
+	]
+	</code></td>
+  </tr>
+    <tr>
+    <td>### XmlRpc.GetCallbacksList</td>
+    <td>* Name: XmlRpc.GetCallbacksList</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Request a list of all available callbacks. This method will trigger the "XmlRpc.CallbacksList" callback.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"responseid" //< Facultative id that will be passed to the "XmlRpc.CallbacksList" callback.<br>
+	]
+	</code></td>
+  </tr>
+    <tr>
+    <td>### XmlRpc.GetCallbacksList_Enabled</td>
+    <td>* Name: XmlRpc.GetCallbacksList_Enabled</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Request a list of all enabled callbacks. This method will trigger the "XmlRpc.CallbacksList_Enabled" callback.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"responseid" //< Facultative id that will be passed to the "XmlRpc.CallbacksList_Enabled" callback.<br>
+	]
+	</code></td>
+  </tr>
+    <tr>
+    <td>### XmlRpc.GetCallbacksList_Disabled</td>
+    <td>* Name: XmlRpc.GetCallbacksList_Disabled</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Request a list of all disabled callbacks. This method will trigger the "XmlRpc.CallbacksList_Disabled" callback.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"responseid" //< Facultative id that will be passed to the "XmlRpc.CallbacksList_Disabled" callback.<br>
+	]
+	</code></td>
+  </tr>
+    <tr>
+    <td>### XmlRpc.BlockCallbacks</td>
+    <td>* Name: XmlRpc.BlockCallbacks</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Block a callback and prevent it from being sent by the script.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"CallbackName",  //< The name of the callback to block<br>
+		"CallbackNameN" //< You can pass as many callbacks as you want<br>
+	]
+	</code></td>
+  </tr>
+      <tr>
+    <td>### XmlRpc.UnblockCallbacks</td>
+    <td>* Name: XmlRpc.UnblockCallbacks</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Unblock a blocked callback.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"CallbackName",  //< The name of the callback to block<br>
+		"CallbackNameN" //< You can pass as many callbacks as you want<br>
+	]
+	</code></td>
+  </tr>
+        <tr>
+    <td>### XmlRpc.GetCallbackHelp</td>
+    <td>* Name: XmlRpc.UnblockCallbacks</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Request help about a callback. This method will trigger the "XmlRpc.CallbackHelp" callback.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"callbackname", //< Name of the callback to get help for<br>
+		"responseid" //< Facultative id that will be passed to the "XmlRpc.CallbackHelp" callback.<br>
+	]
+	</code></td>
+  </tr>
+          <tr>
+    <td>### XmlRpc.GetMethodsList</td>
+    <td>* Name: XmlRpc.GetMethodsList</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Request a list of all available methods. This method will trigger the "XmlRpc.MethodsList" callback.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"responseid" //< Facultative id that will be passed to the "XmlRpc.MethodsList" callback.<br>
+	]
+	</code></td>
+  </tr>
+          <tr>
+    <td>### XmlRpc.GetMethodHelp</td>
+    <td>* Name: XmlRpc.GetMethodHelp</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Request help about a method. This method will trigger the "XmlRpc.MethodHelp" callback.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"callbackname", //< Name of the method to get help for<br>
+		"responseid" //< Facultative id that will be passed to the "XmlRpc.MethodHelp" callback.<br>
+	]
+	</code></td>
+  </tr>
+            <tr>
+    <td>### XmlRpc.GetDocumentation</td>
+    <td>* Name: XmlRpc.GetDocumentation</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Request the current game mode xmlrpc callbacks and methods documentation. This method will trigger the "XmlRpc.Documentation" callback.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"responseid" //< Facultative id that will be passed to the "XmlRpc.Documentation" callback.<br>
+	]
+	</code></td>
+  </tr>
+            <tr>
+    <td>### XmlRpc.SetApiVersion</td>
+    <td>* Name: XmlRpc.SetApiVersion</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Select the version of the API to use.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"1.2.3-beta.4.5.6+build789" //< The version to use in semver format<br>
+	]
+	</code></td>
+  </tr>
+              <tr>
+    <td>### XmlRpc.GetApiVersion</td>
+    <td>* Name: XmlRpc.GetApiVersion</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Request the version of the API currently in use. This method will trigger the "XmlRpc.ApiVersion" callback.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"responseid" //< Facultative id that will be passed to the "XmlRpc.ApiVersion" callback.<br>
+	]
+	</code></td>
+  </tr>
+                <tr>
+    <td>### XmlRpc.GetAllApiVersions</td>
+    <td>* Name: XmlRpc.GetAllApiVersions</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Request all available versions of the API. This method will trigger the "XmlRpc.AllApiVersions" callback.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"responseid" //< Facultative id that will be passed to the "XmlRpc.AllApiVersions" callback.<br>
+	]
+	</code></td>
+  </tr>
+                  <tr>
+    <td>### Maniaplanet.Mode.GetUseTeams</td>
+    <td>* Name: Maniaplanet.Mode.GetUseTeams</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Check if the game mode uses teams or not.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"responseid" //< Facultative id that will be passed to the "Maniaplanet.Mode.UseTeams" callback.<br>
+	]
+	</code></td>
+  </tr>
+                  <tr>
+    <td>### Maniaplanet.UI.SetAltScoresTableVisibility</td>
+    <td>* Name: Maniaplanet.UI.SetAltScoresTableVisibility</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Enable or disable the scores table display with the alt key.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"PlayerLogin", //< The login of the player to update<br>
+		"false" //< false to disable, true to enable<br>
+	]
+	</code></td>
+  </tr>
+                  <tr>
+    <td>### Maniaplanet.UI.SetScoresTableVisibility</td>
+    <td>* Name: Maniaplanet.UI.SetScoresTableVisibility</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Enable or disable the scores table.</td>
+    <td>
+* Data:
+	- Version >=2.4.0:
+	<code>
+	[
+		"PlayerLogin", //< The login of the player to update<br>
+		"false" //< false to disable, true to enable<br>
+	]
+	</code></td>
+  </tr>
+                  <tr>
+    <td>### Maniaplanet.WarmUp.GetStatus</td>
+    <td>* Name: Maniaplanet.WarmUp.GetStatus</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Get the status of the warmup.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"responseid" //< Facultative id that will be passed to the "Maniaplanet.WarmUp.Status" callback.<br>
+	]
+	</code></td>
+  </tr>
+                  <tr>
+    <td>### Maniaplanet.Pause.GetStatus</td>
+    <td>* Name: Maniaplanet.Pause.GetStatus</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Get the status of the pause.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"responseid" //< Facultative id that will be passed to the "Maniaplanet.Pause.Status" callback.<br>
+	]
+	</code></td>
+  </tr>
+                    <tr>
+    <td>### Maniaplanet.Pause.SetActive</td>
+    <td>* Name: Maniaplanet.Pause.SetActive</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Enable or disable the pause if it is available.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"true", //< true to enable the pause, false to disable it.<br>
+		"responseid" //< Facultative id that will be passed to the "Maniaplanet.Pause.Status" callback.<br>
+	]
+	</code></td>
+  </tr>
+                      <tr>
+    <td>### Common.UIModules.GetProperties</td>
+    <td>* Name: Common.UIModules.GetProperties</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Request the properties of the UI modules loaded by the mode. This method will trigger the "Common.UIModules.Properties" callback.</td>
+    <td>
+* Data:
+	- Version >=3.2.0:
+	<code>
+	[
+		"responseid" //< Facultative id that will be passed to the "Common.UIModules.Properties" callback.<br>
+	]
+	</code></td>
+  </tr>
+                      <tr>
+    <td>### Common.UIModules.SetProperties</td>
+    <td>* Name: Common.UIModules.SetProperties</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Update the properties of the UI modules loaded by the mode. Each property (except `id`) has a `propertyname_update` boolean counterpart. This boolean must be set to true if you want to update the property. Otherwise the property and update fields can be omitted. For example, if you want to update only the scale you can do `{ "id" : "IdOfTheModule", "scale": 3.0, "scale_update": true }`.
+</td>
+    <td>
+ Data:
+	- Version >=3.2.0:
+	<code>
+	[
+		"{<br>
+			"uimodules": [ //< Array of UI modules to update<br>
+				{
+					"id": "IdOfTheModule", //< The id of the UI module<br>
+					"position": [10.0, 20.0], //< The position in array format. First value is the x position and the second value is the y position.<br>
+					"position_update": true,<br>
+					"scale": 2.5,<br>
+					"scale_update": true,<br>
+					"visible": true<br>
+					"visible_update": true<br>
+				}
+			]
+		}"
+	]
+	</code></td>
+  </tr>
+                        <tr>
+    <td>### Common.UIModules.ResetProperties</td>
+    <td>* Name: Common.UIModules.ResetProperties</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Reset the properties of the UI modules loaded by the mode.</td>
+    <td>
+* Data:
+	- Version >=3.2.0:
+	<code>
+	[
+		"{<br>
+			"uimodules": [ //< Array of UI modules to reset<br>
+				"IdOfModule1", "IdOfModule2", "IdOfModuleN"<br>
+			]
+		}"
+	]
+	</code></td>
+  </tr>
+   <tr>
+    <td>### Trackmania.Event.SetCurRaceCheckpointsMode</td>
+    <td>* Name: Trackmania.Event.SetCurRaceCheckpointsMode</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Set when the `curracecheckpoints` array in the `Trackmania.Event.WayPoint` and `Trackmania.Event.OnPlayerTriggersWaypoint` callbacks should be filled. "always" will fill the array at each waypoint. "never" will never fill the array. "endlap" will fill the array only if the player finished a lap. "endrace" will fill the array only if the player finished the race. Default value is "never".
+</td>
+    <td>
+* Data:
+	- Version >=2.6.0:
+	<code>
+	[
+		"always", //< The checkpoint mode. Value can be "always", "never", "endlap" or "endrace". Default value is "never".<br>
+		"RequesterId" //< If different ids request different checkpoint modes, then the mode sending the most data will be used. eg: if "A" sets checkpoint mode "always" and "B" sets checkpoint mode "endlap", then "always" will be applied.<br>
+	]
+	</code></td>
+  </tr>
+   <tr>
+    <td>### Trackmania.Event.SetCurLapCheckpointsMode</td>
+    <td>* Name: Trackmania.Event.SetCurLapCheckpointsMode</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Set when the `curlapcheckpoints` array in the `Trackmania.Event.WayPoint` and `Trackmania.Event.OnPlayerTriggersWaypoint` callbacks should be filled. "always" will fill the array at each waypoint. "never" will never fill the array. "endlap" will fill the array only if the player finished a lap. "endrace" will fill the array only if the player finished the race. Default value is "never".
+</td>
+    <td>* Data:
+	- Version >=2.6.0:
+	<code>
+	[
+		"always", //< The checkpoint mode. Value can be "always", "never", "endlap" or "endrace". Default value is "never".<br>
+		"RequesterId" //< If different ids request different checkpoint modes, then the mode sending the most data will be used. eg: if "A" sets checkpoint mode "always" and "B" sets checkpoint mode "endlap", then "always" will be applied.<br>
+	]
+	</code></td>
+  </tr>
+   <tr>
+    <td>### Trackmania.Event.UnsetCurRaceCheckpointsMode</td>
+    <td>* Name: Trackmania.Event.UnsetCurRaceCheckpointsMode</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Unset the checkpoint mode previously set with `Trackmania.Event.SetCurRaceCheckpointsMode`.</td>
+    <td>
+* Data:
+	- Version >=3.0.0:
+	<code>
+	[
+		"RequesterId" //< Id used to set the checkpoint mode with `Trackmania.Event.SetCurRaceCheckpointsMode`<br>
+	]
+	</code></td>
+  </tr>
+   <tr>
+    <td>### Trackmania.Event.UnsetCurLapCheckpointsMode</td>
+    <td>* Name: Trackmania.Event.UnsetCurLapCheckpointsMode</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Unset the checkpoint mode previously set with `Trackmania.Event.SetCurLapCheckpointsMode`.</td>
+    <td>* Data:
+	- Version >=3.0.0:
+	<code>
+	[
+		"RequesterId" //< Id used to set the checkpoint mode with `Trackmania.Event.SetCurLapCheckpointsMode`<br>
+	]
+	</code></td>
+  </tr>
+  <tr>
+    <td>### Trackmania.GetScores</td>
+    <td>* Name: Trackmania.GetScores</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Request the current scores. This method will trigger the "Trackmania.Scores" callback.</td>
+    <td>
+* Data:
+	- Version >=2.0.0: 
+	<code>
+	[
+		"responseid" //< Facultative id that will be passed to the "Trackmania.Scores" callback.<br>
+	]
+	</code></td>
+  </tr>
+  <tr>
+    <td>### Trackmania.SetPlayerPoints</td>
+    <td>* Name: Trackmania.SetPlayerPoints</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Set the points of the player. It overrides its current points. Different game modes will use different types of points.</td>
+    <td>
+* Data:
+	- Version >=2.1.0:
+	<code>
+	[
+		"PlayerLogin", //< Login of the player to update<br>
+		"10", //< The round points, use an empty string to not update.<br>
+		"96", //< The map points, use an empty string to not update.<br>
+		"2" //< The match points, use an empty string to not update.<br>
+	]
+	</code></td>
+  </tr>
+  <tr>
+    <td>### Trackmania.SetTeamPoints</td>
+    <td>* Name: Trackmania.SetTeamPoints</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Set the points of a team. It overrides their current points. Different game modes will use different types of points.</td>
+    <td>
+* Data:
+	- Version >=2.1.0:
+	<code>
+	[<br>
+		"1", //< Id of the team. Can be 1 or 2.<br>
+		"5", //< The round points, use an empty string to not update.<br>
+		"70", //< The map points, use an empty string to not update.<br>
+		"2" //< The match points, use an empty string to not update.<br>
+	]<br>
+	<code><br>
+	- Version >=2.3.0:
+	The team id are now 0 (Blue) and 1 (Red) instead of 1 (Blue) and 2 (Red).
+	<code>
+	[<br>
+		"0", //< Id of the team. Can be 0 or 1.<br>
+		"5", //< The round points, use an empty string to not update.<br>
+		"70", //< The map points, use an empty string to not update.<br>
+		"2" //< The match points, use an empty string to not update.<br>
+	]<br>
+	</code></td>
+  </tr>
+  <tr>
+    <td>### Trackmania.WarmUp.ForceStop</td>
+    <td>* Name: Trackmania.WarmUp.ForceStop</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Stop the whole warm up sequence.</td>
+    <td>
+* Data:
+	- Version >=2.5.0:
+	<code>
+	[]
+	</code></td>
+  </tr>
+   <tr>
+    <td>### Trackmania.WarmUp.ForceStopRound</td>
+    <td>* Name: Trackmania.WarmUp.ForceStopRound</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Stop the current warm up round.</td>
+    <td>
+* Data:
+	- Version >=2.5.0:
+	<code>
+	[]
+	</code></td>
+  </tr>
+   <tr>
+    <td>### Trackmania.WarmUp.Extend</td>
+    <td>* Name: Trackmania.WarmUp.Extend</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: If the warm up has a time limit, increase it.</td>
+    <td>
+* Data:
+	- Version >=3.0.0:
+	<code>
+	[
+		12345 //< Time in milliseconds to add to the warm up<br>
+	]
+	</code></td>
+  </tr>
+   <tr>
+    <td>### Trackmania.WarmUp.GetStatus</td>
+    <td>* Name: Trackmania.WarmUp.GetStatus</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Get the status of the Trackmania's warmup.</td>
+    <td>
+* Data:
+	- Version >=2.5.0:
+	<code>
+	[
+		"responseid" //< Facultative id that will be passed to the "Trackmania.WarmUp.Status" callback.<br>
+	]
+	</code></td>
+  </tr>
+   <tr>
+    <td>### Trackmania.ForceEndRound</td>
+    <td>* Name: Trackmania.ForceEndRound</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Stop the current round. Only available in Cup, Rounds and Team modes.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[]
+	</code></td>
+  </tr>
+     <tr>
+    <td>### Trackmania.GetPointsRepartition</td>
+    <td>* Name: Trackmania.GetPointsRepartition</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Request the current points repartition. This method will trigger the "Trackmania.PointsRepartition" callback.</td>
+    <td>
+* Data:
+	- Version >=2.5.0:
+	<code>
+	[
+		"responseid" //< Facultative id that will be passed to the "Trackmania.PointsRepartition" callback.<br>
+	]
+	</code></td>
+  </tr>
+     <tr>
+    <td>### Trackmania.SetPointsRepartition</td>
+    <td>* Name: Trackmania.SetPointsRepartition</td>
+    <td>* Type: TriggerModeScriptEventArray</td>
+    <td>* Description: Update the points repartition.</td>
+    <td>
+* Data:
+	- Version >=2.5.0:
+	<code>
+	[
+		"10", "9", "8", "7", "6", "5" //< An array of points<br>
+	]
+	</code></td>
+  </tr>
+<!---
+
+	
+
+
+
+* Type: TriggerModeScriptEventArray
+
+	
+</td></tr></table></html>

@@ -1,0 +1,2129 @@
+<html>
+<style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
+<body>
+<body>
+TM2020 Server API Version: 2013-04-16<br><br>
+TM2020 Server Dedicated Version: Trackmania date=2023-09-21_12_00 git=121577-05ef3895994 GameVersion=3.3.0...<br>
+<br>
+=====================================
+XmlRpc scripted callbacks
+=====================================
+<br>
+<br>
+---------
+Callbacks
+---------
+<br>
+<br>
+
+<table style="width:100%">
+  <tr>
+    <th>Callback</th>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Description</th>
+    <th>Data</th>
+  </tr>
+  <br>
+  <tr>
+    <td>### XmlRpc.CallbacksList</td>
+    <td>* Name: XmlRpc.CallbacksList</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: A list with the names of all registered callbacks.</td>
+    <td>* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		{<br>
+			"responseid": "xyz", //< Facultative id passed by a script event  <br>
+			"callbacks": ["Callback1", "Callback2", "Callback3", ..., "CallbackN"] //< List of callbacks names  <br>
+		}
+	]
+	</code></td>
+  </tr>
+  <tr>
+    <td>### XmlRpc.CallbacksList_Enabled</td>
+    <td>* Name: XmlRpc.CallbacksList_Enabled</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: A list with the names of all enabled callbacks.</td>
+    <td>* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"responseid": "xyz", //< Facultative id passed by a script event<br>
+			"callbacks": ["Callback1", "Callback2", "Callback3", ..., "CallbackN"] //< List of callbacks names<br>
+		}"
+	]
+	</code></td>
+  </tr>
+    <tr>
+    <td>### XmlRpc.CallbacksList_Disabled</td>
+    <td>* Name: XmlRpc.CallbacksList_Disabled</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: A list with the names of all enabled callbacks.</td>
+    <td>* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"responseid": "xyz", //< Facultative id passed by a script event<br>
+			"callbacks": ["Callback1", "Callback2", "Callback3", ..., "CallbackN"] //< List of callbacks names<br>
+		}"
+	]
+	</code></td>
+  </tr>
+  <tr>
+    <td>### XmlRpc.CallbackHelp</td>
+    <td>* Name: XmlRpc.CallbackHelp</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Description of a callback and its content. The array contains two items.</td>
+    <td>* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"responseid": "xyz", //< Facultative id passed by a script event<br>
+			"callback": "CallbackName", //< The name of the described callback<br>
+			"available": true, //< Is the callback available in this game mode?<br>
+			"disabled": false //< Is the callback blocked?<br>
+		}", 
+		"Description of the callback" //< The description of the callback<br>
+	]
+	</code></td>
+  </tr>
+  <tr>
+    <td>### XmlRpc.MethodsList</td>
+    <td>* Name: XmlRpc.MethodsList</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: A list with the names of all registered methods.</td>
+    <td>* Data:
+	- Version >=2.0.0:
+	<code>
+
+	[
+		"{<br>
+			"responseid": "xyz", //< Facultative id passed by a script event<br>
+			"methods": ["Method1", "Method2", "Method3", ..., "MethodN"] //< List of callbacks names<br>
+		}"
+	]
+	</code></td>
+  </tr>
+    <tr>
+    <td>### XmlRpc.Documentation</td>
+    <td>* Name: XmlRpc.Documentation</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Documentation about the game mode xmlrpc methods and callbacks. The array contains two items.</td>
+    <td>* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"responseid": "xyz" //< Facultative id passed by a script event<br>
+		}", 
+		"Documentation" //< The documentation<br>
+	]
+	</code></td>
+  </tr>
+    <tr>
+    <td>### XmlRpc.ApiVersion</td>
+    <td>* Name: XmlRpc.ApiVersion</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Give the currently selected API version.</td>
+    <td>* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"responseid": "xyz", //< Facultative id passed by a script event<br>
+			"version": "1.2.3-beta.4.5.6+build789" //< The API version in semver format<br>
+		}"
+	]
+	</code></td>
+  </tr>
+    <tr>
+    <td>### XmlRpc.AllApiVersions</td>
+    <td>* Name: XmlRpc.AllApiVersions</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Give the latest and all available api versions.</td>
+    <td>* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"responseid": "xyz", //< Facultative id passed by a script event<br>
+			"latest": "1.2.3-beta.4.5.6+build789" //< The latest API version in semver format<br>
+			"versions": ["1.0.0", "1.0.1", "1.1.0", "1.2.3-beta.4.5.6+build789"] //< All available versions<br>
+		}"
+	]
+	</code></td>
+    </tr>
+    <tr>
+    <td>### XmlRpc.AllApiVersions</td>
+    <td>* Name: XmlRpc.AllApiVersions</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Give the latest and all available api versions.</td>
+    <td>* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"responseid": "xyz", //< Facultative id passed by a script event<br>
+			"latest": "1.2.3-beta.4.5.6+build789" //< The latest API version in semver format<br>
+			"versions": ["1.0.0", "1.0.1", "1.1.0", "1.2.3-beta.4.5.6+build789"] //< All available versions<br>
+		}"
+	]
+	</code></td>
+  </tr>
+    <tr>
+    <td>### Maniaplanet.StartServer_Start</td>
+    <td>* Name: Maniaplanet.StartServer_Start</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the "StartServer" section start.</td>
+    <td>* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"restarted": false, //< true if the script was restarted<br>
+			"mode": {<br>
+				"updated": true, //< true if the mode was changed<br>
+				"name": "TimeAttack" //< The name of the mode<br>
+			},<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+	</code></td>
+  </tr>
+  <tr>
+    <td>### Maniaplanet.StartServer_End</td>
+    <td>* Name: Maniaplanet.StartServer_End</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the "StartServer" section end.</td>
+    <td>* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"restarted": false, //< true if the script was restarted<br>
+			"mode": {<br>
+				"updated": true, //< true if the mode was changed<br>
+				"name": "TimeAttack" //< The name of the mode<br>
+			},<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+	</code></td>
+  </tr>
+      <tr>
+    <td>### Maniaplanet.StartMatch_Start</td>
+    <td>* Name: Maniaplanet.StartMatch_Start</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the "StartMatch" section start.</td>
+    <td>* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+    </code><br>
+	- Version >=3.9.0:
+	<code>[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"valid": 111, //< Each time this section is played and validated by the mode, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+	</code></td>
+  </tr>
+      <tr>
+    <td>### Maniaplanet.StartMatch_End</td>
+    <td>* Name: Maniaplanet.StartMatch_End</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the "StartMatch" section end.</td>
+    <td>* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+    </code><br>
+	- Version >=3.9.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"valid": 111, //< Each time this section is played and validated by the mode, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+	</code></td>
+  </tr>
+      <tr>
+    <td>### Maniaplanet.StartMap_Start</td>
+    <td>* Name: Maniaplanet.StartMap_Start</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the "StartMap" section start.</td>
+    <td>* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+            
+			"restarted": false, //< true if the map was restarted, false otherwise<br>
+            
+			"time": 123450, //< Server time when the callback was sent<br>
+            
+			"map": { <br>
+				"uid": "4dNDBnxvcwDaXmQz4Qf5khJUSOd", //< Unique id of the map<br>
+                
+				"name": "NameOfTheMap", //< Name of the map<br>
+                
+				"filename": "Path\\To\\Map\\NameOfTheMap.Map.Gbx", //< Path to the file from the "Maps" folder<br>
+                
+				"author": "AuthorLogin", //< Login of the author<br>
+                
+				"authornickname": "AuthorNickname", //< Nickname of the author at the time the map was saved<br>
+                
+				"environment": "Storm", //< Environment used to build the map<br>
+                
+				"mood": "Day", //< Mood used to build the map<br>
+                
+				"bronzetime": -1, //< Bronze medal time (valid in Trackmania only)<br>
+                
+				"silvertime": -1, //< Silver medal time (valid in Trackmania only)<br>
+                
+				"goldtime": -1, //< Gold medal time (valid in Trackmania only)<br>
+                
+				"authortime": -1, //< Author medal time (valid in Trackmania only)<br>
+                
+				"copperprice": 1008, //< Price of the map in coppers<br>
+                
+				"laprace": false, //< Is the map a mutlilaps (valid in Trackmania only)<br>
+                
+				"nblaps": 0, //< Number of laps if the map is a mutlilaps (valid in Trackmania only)<br>
+                
+				"maptype": "ShootMania\\MapTypeArena", //< MapType used to validate the map<br>
+                
+				"mapstyle": "StyleOfTheMap" //< Style applied to the map<br>
+			}
+		}"
+	]
+    </code><br><br>
+	- Version >=3.9.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"valid": 111, //< Each time this section is played and validated by the mode, this number is incremented by one<br>
+			"restarted": false, //< true if the map was restarted, false otherwise<br>
+			"time": 123450, //< Server time when the callback was sent<br>
+			"map": {<br>
+				"uid": "4dNDBnxvcwDaXmQz4Qf5khJUSOd", //< Unique id of the map<br>
+				"name": "NameOfTheMap", //< Name of the map<br>
+				"filename": "Path\\To\\Map\\NameOfTheMap.Map.Gbx", //< Path to the file from the "Maps" folder<br>
+				"author": "AuthorLogin", //< Login of the author<br>
+				"authornickname": "AuthorNickname", //< Nickname of the author at the time the map was saved<br>
+				"environment": "Storm", //< Environment used to build the map<br>
+				"mood": "Day", //< Mood used to build the map<br>
+				"bronzetime": -1, //< Bronze medal time (valid in Trackmania only)<br>
+				"silvertime": -1, //< Silver medal time (valid in Trackmania only)<br>
+				"goldtime": -1, //< Gold medal time (valid in Trackmania only)<br>
+				"authortime": -1, //< Author medal time (valid in Trackmania only)<br>
+				"copperprice": 1008, //< Price of the map in coppers<br>
+				"laprace": false, //< Is the map a mutlilaps (valid in Trackmania only)<br>
+				"nblaps": 0, //< Number of laps if the map is a mutlilaps (valid in Trackmania only)<br>
+				"maptype": "ShootMania\\MapTypeArena", //< MapType used to validate the map<br>
+				"mapstyle": "StyleOfTheMap" //< Style applied to the map<br>
+			}
+		}"
+	]
+	</code></td>
+  </tr>
+        <tr>
+    <td>### Maniaplanet.StartMap_End</td>
+    <td>* Name: Maniaplanet.StartMap_End</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the "StartMap" section end.</td>
+    <td>* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"restarted": false, //< true if the map was restarted, false otherwise<br>
+			"time": 123450, //< Server time when the callback was sent<br>
+			"map": {<br>
+				"uid": "4dNDBnxvcwDaXmQz4Qf5khJUSOd", //< Unique id of the map<br>
+				"name": "NameOfTheMap", //< Name of the map<br>
+				"filename": "Path\\To\\Map\\NameOfTheMap.Map.Gbx", //< Path to the file from the "Maps" folder<br>
+				"author": "AuthorLogin", //< Login of the author<br>
+				"authornickname": "AuthorNickname", //< Nickname of the author at the time the map was saved<br>
+				"environment": "Storm", //< Environment used to build the map<br>
+				"mood": "Day", //< Mood used to build the map<br>
+				"bronzetime": -1, //< Bronze medal time (valid in Trackmania only)<br>
+				"silvertime": -1, //< Silver medal time (valid in Trackmania only)<br>
+				"goldtime": -1, //< Gold medal time (valid in Trackmania only)<br>
+				"authortime": -1, //< Author medal time (valid in Trackmania only)<br>
+				"copperprice": 1008, //< Price of the map in coppers<br>
+				"laprace": false, //< Is the map a mutlilaps (valid in Trackmania only)<br>
+				"nblaps": 0, //< Number of laps if the map is a mutlilaps (valid in Trackmania only)<br>
+				"maptype": "ShootMania\\MapTypeArena", //< MapType used to validate the map<br>
+				"mapstyle": "StyleOfTheMap" //< Style applied to the map<br>
+			}
+		}"
+	]
+    </code><br><br>
+	- Version >=3.9.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"valid": 111, //< Each time this section is played and validated by the mode, this number is incremented by one<br>
+			"restarted": false, //< true if the map was restarted, false otherwise<br>
+			"time": 123450, //< Server time when the callback was sent<br>
+			"map": {
+				"uid": "4dNDBnxvcwDaXmQz4Qf5khJUSOd", //< Unique id of the map<br>
+				"name": "NameOfTheMap", //< Name of the map<br>
+				"filename": "Path\\To\\Map\\NameOfTheMap.Map.Gbx", //< Path to the file from the "Maps" folder<br>
+				"author": "AuthorLogin", //< Login of the author<br>
+				"authornickname": "AuthorNickname", //< Nickname of the author at the time the map was saved<br>
+				"environment": "Storm", //< Environment used to build the map<br>
+				"mood": "Day", //< Mood used to build the map<br>
+				"bronzetime": -1, //< Bronze medal time (valid in Trackmania only)<br>
+				"silvertime": -1, //< Silver medal time (valid in Trackmania only)<br>
+				"goldtime": -1, //< Gold medal time (valid in Trackmania only)<br>
+				"authortime": -1, //< Author medal time (valid in Trackmania only)<br>
+				"copperprice": 1008, //< Price of the map in coppers<br>
+				"laprace": false, //< Is the map a mutlilaps (valid in Trackmania only)<br>
+				"nblaps": 0, //< Number of laps if the map is a mutlilaps (valid in Trackmania only)<br>
+				"maptype": "ShootMania\\MapTypeArena", //< MapType used to validate the map<br>
+				"mapstyle": "StyleOfTheMap" //< Style applied to the map<br>
+			}
+		}"
+	]
+	</code>
+    </td>
+  </tr>
+  <tr>
+    <td>### Maniaplanet.StartRound_Start</td>
+    <td>* Name: Maniaplanet.StartRound_Start</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the "StartRound" section start.</td>
+    <td>* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+    </code><br><br>
+	- Version >=3.9.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"valid": 111, //< Each time this section is played and validated by the mode, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+	</code></td>
+  </tr>
+  <tr>
+    <td>### Maniaplanet.StartRound_End</td>
+    <td>* Name: Maniaplanet.StartRound_End</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the "StartRound" section end.</td>
+    <td>* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+    </code><br><br>
+	- Version >=3.9.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one <br>
+			"valid": 111, //< Each time this section is played and validated by the mode, this number is incremented by one <br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+	</code></td>
+  </tr>
+    <tr>
+    <td>### Maniaplanet.StartTurn_Start</td>
+    <td>* Name: Maniaplanet.StartTurn_Start</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the "StartTurn" section start.</td>
+    <td>* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+    </code><br><br>
+	- Version >=3.9.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"valid": 111, //< Each time this section is played and validated by the mode, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+	</code></td>
+  </tr>
+      <tr>
+    <td>### Maniaplanet.StartTurn_End</td>
+    <td>* Name: Maniaplanet.StartTurn_End</td>
+    <td>* Type: CallbackArray</td>
+    <td>** Description: Callback sent when the "StartTurn" section end.</td>
+    <td>* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+    </code><br><br>
+	- Version >=3.9.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one <br>
+			"valid": 111, //< Each time this section is played and validated by the mode, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+	</code></td>
+  </tr>
+        <tr>
+    <td>### Maniaplanet.StartPlayLoop</td>
+    <td>* Name: Maniaplanet.StartPlayLoop</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the "PlayLoop" section start.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+    <code><br><br>
+	- Version >=3.9.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one <br>
+			"valid": 111, //< Each time this section is played and validated by the mode, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+	</code></td>
+  </tr>
+   <tr>
+    <td>### Maniaplanet.EndPlayLoop</td>
+    <td>* Name: Maniaplanet.EndPlayLoop</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the "PlayLoop" section end.</td>
+    <td>* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+    </code><br><br>
+	- Version >=3.9.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"valid": 111, //< Each time this section is played and validated by the mode, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+	</code></td>
+  </tr>
+     <tr>
+    <td>### Maniaplanet.EndTurn_Start</td>
+    <td>* Name: Maniaplanet.EndTurn_Start</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the "EndTurn" section start.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+    </code><br><br>
+	- Version >=3.9.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"valid": 111, //< Each time this section is played and validated by the mode, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+	</code></td>
+  </tr>
+  <tr>
+    <td>### Maniaplanet.EndTurn_End</td>
+    <td>* Name: Maniaplanet.EndTurn_End</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the "EndTurn" section end.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+    </code><br><br>
+	- Version >=3.9.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"valid": 111, //< Each time this section is played and validated by the mode, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+	</code></td>
+  </tr> 
+  <tr>
+    <td>### Maniaplanet.EndRound_Start</td>
+    <td>* Name: Maniaplanet.EndRound_Start</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the "EndRound" section start.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+    </code><br><br>
+	- Version >=3.9.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"valid": 111, //< Each time this section is played and validated by the mode, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+	</code></td>
+  </tr>
+  <tr>
+    <td>### Maniaplanet.EndRound_End</td>
+    <td>* Name: Maniaplanet.EndRound_End</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the "EndRound" section end.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+    </code><br><br>
+	- Version >=3.9.0:<
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"valid": 111, //< Each time this section is played and validated by the mode, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+	</code></td>
+  </tr>
+    <tr>
+    <td>### Maniaplanet.EndMap_Start</td>
+    <td>* Name: Maniaplanet.EndMap_Start</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the "EndMap" section start.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"time": 123450, //< Server time when the callback was sent<br>
+			"map": {
+				"uid": "4dNDBnxvcwDaXmQz4Qf5khJUSOd", //< Unique id of the map<br>
+				"name": "NameOfTheMap", //< Name of the map<br>
+				"filename": "Path\\To\\Map\\NameOfTheMap.Map.Gbx", //< Path to the file from the "Maps" folder<br>
+				"author": "AuthorLogin", //< Login of the author<br>
+				"authornickname": "AuthorNickname", //< Nickname of the author at the time the map was saved<br>
+				"environment": "Storm", //< Environment used to build the map<br>
+				"mood": "Day", //< Mood used to build the map<br>
+				"bronzetime": -1, //< Bronze medal time (valid in Trackmania only)<br>
+				"silvertime": -1, //< Silver medal time (valid in Trackmania only)<br>
+				"goldtime": -1, //< Gold medal time (valid in Trackmania only)<br>
+				"authortime": -1, //< Author medal time (valid in Trackmania only)<br>
+				"copperprice": 1008, //< Price of the map in coppers<br>
+				"laprace": false, //< Is the map a mutlilaps (valid in Trackmania only)<br>
+				"nblaps": 0, //< Number of laps if the map is a mutlilaps (valid in Trackmania only)<br>
+				"maptype": "ShootMania\\MapTypeArena", //< MapType used to validate the map<br>
+				"mapstyle": "StyleOfTheMap" //< Style applied to the map<br>
+			}
+		}"
+	]
+    </code><br><br>
+	- Version >=3.9.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"valid": 111, //< Each time this section is played and validated by the mode, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+			"map": {
+				"uid": "4dNDBnxvcwDaXmQz4Qf5khJUSOd", //< Unique id of the map<br>
+				"name": "NameOfTheMap", //< Name of the map<br>
+				"filename": "Path\\To\\Map\\NameOfTheMap.Map.Gbx", //< Path to the file from the "Maps" folder<br>
+				"author": "AuthorLogin", //< Login of the author<br>
+				"authornickname": "AuthorNickname", //< Nickname of the author at the time the map was saved<br>
+				"environment": "Storm", //< Environment used to build the map<br>
+				"mood": "Day", //< Mood used to build the map<br>
+				"bronzetime": -1, //< Bronze medal time (valid in Trackmania only)<br>
+				"silvertime": -1, //< Silver medal time (valid in Trackmania only)<br>
+				"goldtime": -1, //< Gold medal time (valid in Trackmania only)<br>
+				"authortime": -1, //< Author medal time (valid in Trackmania only)<br>
+				"copperprice": 1008, //< Price of the map in coppers<br>
+				"laprace": false, //< Is the map a mutlilaps (valid in Trackmania only)<br>
+				"nblaps": 0, //< Number of laps if the map is a mutlilaps (valid in Trackmania only)<br>
+				"maptype": "ShootMania\\MapTypeArena", //< MapType used to validate the map<br>
+				"mapstyle": "StyleOfTheMap" //< Style applied to the map<br>
+			}
+		}"
+	]
+	</code></td>
+  </tr>
+    <tr>
+    <td>### Maniaplanet.EndMap_End</td>
+    <td>* Name: Maniaplanet.EndMap_End</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the "EndMap" section end.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"time": 123450, //< Server time when the callback was sent<br>
+			"map": {
+				"uid": "4dNDBnxvcwDaXmQz4Qf5khJUSOd", //< Unique id of the map<br>
+				"name": "NameOfTheMap", //< Name of the map<br>
+				"filename": "Path\\To\\Map\\NameOfTheMap.Map.Gbx", //< Path to the file from the "Maps" folder<br>
+				"author": "AuthorLogin", //< Login of the author<br>
+				"authornickname": "AuthorNickname", //< Nickname of the author at the time the map was saved<br>
+				"environment": "Storm", //< Environment used to build the map<br>
+				"mood": "Day", //< Mood used to build the map<br>
+				"bronzetime": -1, //< Bronze medal time (valid in Trackmania only)<br>
+				"silvertime": -1, //< Silver medal time (valid in Trackmania only)<br>
+				"goldtime": -1, //< Gold medal time (valid in Trackmania only)<br>
+				"authortime": -1, //< Author medal time (valid in Trackmania only)<br>
+				"copperprice": 1008, //< Price of the map in coppers<br>
+				"laprace": false, //< Is the map a mutlilaps (valid in Trackmania only)<br>
+				"nblaps": 0, //< Number of laps if the map is a mutlilaps (valid in Trackmania only)<br>
+				"maptype": "ShootMania\\MapTypeArena", //< MapType used to validate the map<br>
+				"mapstyle": "StyleOfTheMap" //< Style applied to the map<br>
+			}
+		}"
+	]
+    </code><br><br>
+	- Version >=3.9.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"valid": 111, //< Each time this section is played and validated by the mode, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+			"map": {
+				"uid": "4dNDBnxvcwDaXmQz4Qf5khJUSOd", //< Unique id of the map<br>
+				"name": "NameOfTheMap", //< Name of the map<br>
+				"filename": "Path\\To\\Map\\NameOfTheMap.Map.Gbx", //< Path to the file from the "Maps" folder<br>
+				"author": "AuthorLogin", //< Login of the author<br>
+				"authornickname": "AuthorNickname", //< Nickname of the author at the time the map was saved<br>
+				"environment": "Storm", //< Environment used to build the map<br>
+				"mood": "Day", //< Mood used to build the map<br>
+				"bronzetime": -1, //< Bronze medal time (valid in Trackmania only)<br>
+				"silvertime": -1, //< Silver medal time (valid in Trackmania only)<br>
+				"goldtime": -1, //< Gold medal time (valid in Trackmania only)<br>
+				"authortime": -1, //< Author medal time (valid in Trackmania only)<br>
+				"copperprice": 1008, //< Price of the map in coppers<br>
+				"laprace": false, //< Is the map a mutlilaps (valid in Trackmania only)<br>
+				"nblaps": 0, //< Number of laps if the map is a mutlilaps (valid in Trackmania only)<br>
+				"maptype": "ShootMania\\MapTypeArena", //< MapType used to validate the map<br>
+				"mapstyle": "StyleOfTheMap" //< Style applied to the map<br>
+			}
+		}"
+	]
+	</code></td>
+  </tr>
+      <tr>
+    <td>### Maniaplanet.EndMatch_Start</td>
+    <td>* Name: Maniaplanet.EndMatch_Start</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the "EndMatch" section start.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+    </code><br><br>
+	- Version >=3.9.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"valid": 111, //< Each time this section is played and validated by the mode, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+	</code></td>
+  </tr>
+    <tr>
+    <td>### Maniaplanet.EndMatch_End</td>
+    <td>* Name: Maniaplanet.EndMatch_End</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the "EndMatch" section end.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+    </code><br><br>
+	- Version >=3.9.0:
+	<code>
+	[
+		"{<br>
+			"count": 123, //< Each time this section is played, this number is incremented by one<br>
+			"valid": 111, //< Each time this section is played and validated by the mode, this number is incremented by one<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+	</code></td>
+  </tr>
+    <tr>
+    <td>### Maniaplanet.EndServer_Start</td>
+    <td>* Name: Maniaplanet.EndServer_Start</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the "EndServer" section start.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123450 //< Server time when the callback was sent
+		}"
+	]
+	</code></td>
+  </tr>
+      <tr>
+    <td>### Maniaplanet.EndServer_End</td>
+    <td>* Name: Maniaplanet.EndServer_End</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the "EndServer" section end.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+	</code></td>
+  </tr>
+    <tr>
+    <td>### Maniaplanet.LoadingMap_Start</td>
+    <td>* Name: Maniaplanet.LoadingMap_Start</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the server starts to load a map.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"restarted": false, //< true if the map was restarted, false otherwise<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+	</code></td>
+  </tr>
+  <tr>
+    <td>### Maniaplanet.LoadingMap_End</td>
+    <td>* Name: Maniaplanet.LoadingMap_End</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the server finishes to load a map.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"restarted": false, //< true if the map was restarted, false otherwise<br>
+			"time": 123450, //< Server time when the callback was sent<br>
+			"map": {
+				"uid": "4dNDBnxvcwDaXmQz4Qf5khJUSOd", //< Unique id of the map<br>
+				"name": "NameOfTheMap", //< Name of the map<br>
+				"filename": "Path\\To\\Map\\NameOfTheMap.Map.Gbx", //< Path to the file from the "Maps" folder<br>
+				"author": "AuthorLogin", //< Login of the author<br>
+				"authornickname": "AuthorNickname", //< Nickname of the author at the time the map was saved<br>
+				"environment": "Storm", //< Environment used to build the map<br>
+				"mood": "Day", //< Mood used to build the map<br>
+				"bronzetime": -1, //< Bronze medal time (valid in Trackmania only)<br>
+				"silvertime": -1, //< Silver medal time (valid in Trackmania only)<br>
+				"goldtime": -1, //< Gold medal time (valid in Trackmania only)<br>
+				"authortime": -1, //< Author medal time (valid in Trackmania only)<br>
+				"copperprice": 1008, //< Price of the map in coppers<br>
+				"laprace": false, //< Is the map a mutlilaps (valid in Trackmania only)<br>
+				"nblaps": 0, //< Number of laps if the map is a mutlilaps (valid in Trackmania only)<br>
+				"maptype": "ShootMania\\MapTypeArena", //< MapType used to validate the map<br>
+				"mapstyle": "StyleOfTheMap" //< Style applied to the map<br>
+			}
+		}"
+	]
+	</code></td>
+  </tr>
+  <tr>
+    <td>### Maniaplanet.UnloadingMap_Start</td>
+    <td>* Name: Maniaplanet.UnloadingMap_Start</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the server starts to unload a map.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123450, //< Server time when the callback was sent<br>
+			"map": {
+				"uid": "4dNDBnxvcwDaXmQz4Qf5khJUSOd", //< Unique id of the map<br>
+				"name": "NameOfTheMap", //< Name of the map<br>
+				"filename": "Path\\To\\Map\\NameOfTheMap.Map.Gbx", //< Path to the file from the "Maps" folder<br>
+				"author": "AuthorLogin", //< Login of the author<br>
+				"authornickname": "AuthorNickname", //< Nickname of the author at the time the map was saved<br>
+				"environment": "Storm", //< Environment used to build the map<br>
+				"mood": "Day", //< Mood used to build the map<br>
+				"bronzetime": -1, //< Bronze medal time (valid in Trackmania only)<br>
+				"silvertime": -1, //< Silver medal time (valid in Trackmania only)<br>
+				"goldtime": -1, //< Gold medal time (valid in Trackmania only)<br>
+				"authortime": -1, //< Author medal time (valid in Trackmania only)<br>
+				"copperprice": 1008, //< Price of the map in coppers<br>
+				"laprace": false, //< Is the map a mutlilaps (valid in Trackmania only)<br>
+				"nblaps": 0, //< Number of laps if the map is a mutlilaps (valid in Trackmania only)<br>
+				"maptype": "ShootMania\\MapTypeArena", //< MapType used to validate the map<br>
+				"mapstyle": "StyleOfTheMap" //< Style applied to the map<br>
+			}
+		}"
+	]
+	</code></td>
+  </tr>
+  <tr>
+    <td>### Maniaplanet.UnloadingMap_End</td>
+    <td>* Name: Maniaplanet.UnloadingMap_End</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the server finishes to unload a map.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+	</code></td>
+  </tr>
+  <tr>
+    <td>### Maniaplanet.Podium_Start</td>
+    <td>* Name: Maniaplanet.Podium_Start</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the podium sequence starts.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+	</code></td>
+  </tr>
+  <tr>
+    <td>### Maniaplanet.Podium_End</td>
+    <td>* Name: Maniaplanet.Podium_End</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the podium sequence ends.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+	</code></td>
+  </tr>
+    <tr>
+    <td>### Maniaplanet.ChannelProgression_Start</td>
+    <td>* Name: Maniaplanet.ChannelProgression_Start</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the channel progression sequence starts.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+	</code></td>
+  </tr>
+    <tr>
+    <td>### Maniaplanet.ChannelProgression_End</td>
+    <td>* Name: Maniaplanet.ChannelProgression_End</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the channel progression sequence ends.</td>
+    <td>* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123450 //< Server time when the callback was sent<br>
+		}"
+	]
+	</code></td>
+  </tr>
+      <tr>
+    <td>### Maniaplanet.Mode.UseTeams</td>
+    <td>* Name: Maniaplanet.Mode.UseTeams</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Tell if the game mode uses teams or not.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"responseid": "xyz", //< Facultative id passed by a script event<br>
+			"teams": true //< true if the game mode uses teams, false otherwise<br>
+		}"
+	]
+	</code></td>
+  </tr>
+ <tr>
+    <td>### Maniaplanet.WarmUp.Status</td>
+    <td>* Name: Maniaplanet.WarmUp.Status</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: The status of the warmup.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"responseid": "xyz", //< Facultative id passed by a script event<br>
+			"available": true, //< true if a warmup is available in the game mode, false otherwise<br>
+			"active": true //< true if a warmup is ongoing, false otherwise<br>
+		}"
+	]
+	</code></td>
+  </tr>
+   <tr>
+    <td>### UI.Event.Default</td>
+    <td>* Name: UI.Event.Default</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the event type is not yet supported by the XmlRpc library.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred,<br>
+			"type": "::EType::EventType" //< The type of event<br>
+		}"
+	]
+	</code></td>
+  </tr>
+   <tr>
+    <td>### UI.Event.OnModuleCustomEvent</td>
+    <td>* Name: UI.Event.OnModuleCustomEvent</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a module triggers a custom event.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456 //< Server time when the event occurred,<br>
+			"login": "PlayerLogin", //< Login of the player who requested a new action<br>
+			"moduletype": "EModuleType::Store", //< The type of module that triggered the event<br>
+			"param1": "SomeParam", //< First custom param of the event<br>
+			"param2":["Some", "Other", "Params"] //< Second custom param of the event<br>
+		}"
+	]
+	</code></td>
+  </tr>
+   <tr>
+    <td>### UI.Event.OnModuleShowRequest
+</td>
+    <td>* Name: UI.Event.OnModuleShowRequest</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a module requests to be shown.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456 //< Server time when the event occurred,<br>
+			"login": "PlayerLogin", //< Login of the player who received the request<br>
+			"moduletype": "EModuleType::Store" //< The type of module that sent the request<br>
+		}"
+	]
+	</code></td>
+  </tr>
+  <tr>
+    <td>### UI.Event.OnModuleHideRequest
+</td>
+    <td>* Name: UI.Event.OnModuleHideRequest</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a module requests to be hidden.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456 //< Server time when the event occurred,<br>
+			"login": "PlayerLogin", //< Login of the player who received the request<br>
+			"moduletype": "EModuleType::Store" //< The type of module that sent the request<br>
+		}"
+	]
+	<code></td>
+  </tr>
+    <tr>
+    <td>### UI.Event.OnModuleStorePurchase
+</td>
+    <td>* Name: UI.Event.OnModuleStorePurchase</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a player buys something in the store.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456 //< Server time when the event occurred,<br>
+			"login": "PlayerLogin", //< Login of the player who bought something<br>
+			"item": "ItemName", //< The name of the item<br>
+			"quantity": "5" //< The amount of items bought<br>
+		}"
+	]
+	</code></td>
+  </tr>
+      <tr>
+    <td>### UI.Event.OnModuleInventoryDrop
+</td>
+    <td>* Name: UI.Event.OnModuleInventoryDrop</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a player drops an item from its inventory.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456 //< Server time when the event occurred,<br>
+			"login": "PlayerLogin", //< Login of the player who dropped the item<br>
+			"item": "ItemName" //< The name of the item<br>
+		}"
+	]
+	</code></td>
+  </tr>
+        <tr>
+    <td>### UI.Event.OnModuleInventoryEquip
+</td>
+    <td>* Name: UI.Event.OnModuleInventoryEquip</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a player equips an item from its inventory.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456 //< Server time when the event occurred,<br>
+			"login": "PlayerLogin", //< Login of the player who equipped the item<br>
+			"item": "ItemName" //< The name of the item<br>
+		}"
+	]
+	</code></td>
+  </tr>
+        <tr>
+    <td>### Maniaplanet.Pause.Status
+</td>
+    <td>* Name: Maniaplanet.Pause.Status</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: The status of the pause.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"responseid": "xyz", //< Facultative id passed by a script event<br>
+			"available": true, //< true if a pause is available in the game mode, false otherwise<br>
+			"active": true //< true if there is an ongoing pause, false otherwise<br>
+		}"
+	]
+	</code></td>
+  </tr>
+  <tr>
+    <td>### Common.UIModules.Properties
+</td>
+    <td>* Name: Common.UIModules.Properties</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Properties of the UI modules loaded by the mode.</td>
+    <td>
+* Data:
+	- Version >=3.2.0:
+	<code>
+	[
+		"{<br>
+			"responseid": "xyz" //< Facultative id passed by a script event<br>
+			"uimodules": [ //< Array of UI modules loaded by the mode<br>
+				{
+					"id": "IdOfTheModule", //< The id of the UI module<br>
+					"position": [10.0, 20.0], //< The position in array format. First value is the x position and the second value is the y position.<br>
+					"scale": 2.5,<br>
+					"visible": true<br>
+				}
+			]
+		}"
+	]
+	</code></td>
+  </tr>
+    <tr>
+    <td>### Trackmania.Event.Default
+</td>
+    <td>* Name: Trackmania.Event.Default</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the event type is not yet supported by the XmlRpc library.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"type": "::EType::EventType" //< The type of event<br>
+		}"
+	]
+	</code></td>
+  </tr>
+      <tr>
+    <td>### Trackmania.Event.OnShoot
+</td>
+    <td>* Name: Trackmania.Event.OnShoot</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a player shoots.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"shooter": "ShooterLogin", //< Login of the player who shot<br>
+			"weapon": 2 //< Id of the weapon [1-Laser, 2-Rocket, 3-Nucleus, 5-Arrow]<br>
+		}"
+	]
+	</code></td>
+  </tr>
+        <tr>
+    <td>### Trackmania.Event.OnHit
+</td>
+    <td>* Name: Trackmania.Event.OnHit</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a player is hit.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"shooter": "ShooterLogin", //< Login of the player who shot<br>
+			"victim": "VictimLogin", //< Login of the player who got hit<br>
+			"weapon": 2, //< Id of the weapon [1-Laser, 2-Rocket, 3-Nucleus, 5-Arrow]<br>
+			"damage": 100, //< Amount of damaged done by the hit<br>
+			"points": 2, //< Amount of points scored by the shooter<br>
+			"distance": 45.578, //< Distance between the victim and the shooter at the time of the hit<br>
+			"shooterposition": { "x": 19.3, "y": 9.3", "z": 59.9 }, //< Position of the shooter when their projectile hits the victim<br>
+			"victimposition": { "x": 87.6, "y": 10.0, "z": 84.5 } //< Position of the victim when they have hit by the projectile<br>
+		}"
+	]
+	</code></td>
+  </tr>
+          <tr>
+    <td>### Trackmania.Event.OnNearMiss
+</td>
+    <td>* Name: Trackmania.Event.OnNearMiss</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a player dodges a projectile.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"shooter": "ShooterLogin", //< Login of the player who shot<br>
+			"victim": "VictimLogin", //< Login of the player who dodged<br>
+			"weapon": 1, //< Id of the weapon [1-Laser, 2-Rocket, 3-Nucleus, 5-Arrow]<br>
+			"distance": 0.587, //< Distance of the near miss<br>
+			"shooterposition": { "x": 19.3, "y": 9.3", "z": 59.9 }, //< Position of the shooter when their projectile misses the victim<br>
+			"victimposition": { "x": 87.6, "y": 10.0, "z": 84.5 } //< Position of the victim when they dodged the projectile<br>
+		}"
+	]
+	</code></td>
+  </tr>
+            <tr>
+    <td>### Trackmania.Event.OnArmorEmpty
+</td>
+    <td>* Name: Trackmania.Event.OnArmorEmpty</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a player is eliminated.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"shooter": "ShooterLogin", //< Login of the player who eliminated the victim<br>
+			"victim": "VictimLogin", //< Login of the player who got eliminated<br>
+			"weapon": 2, //< Id of the weapon [1-Laser, 2-Rocket, 3-Nucleus, 5-Arrow]<br>
+			"distance": 65.948, //< Distance between the victim and the shooter at the time of the elimination<br>
+			"shooterposition": { "x": 19.3, "y": 9.3", "z": 59.9 }, //< Position of the shooter when the victim is eliminated<br>
+			"victimposition": { "x": 87.6, "y": 10.0, "z": 84.5 } //< Position of the victim when they have eliminated<br>
+		}"
+	]
+	</code></td>
+  </tr>
+ <tr>
+    <td>### Trackmania.Event.OnCapture
+</td>
+    <td>* Name: Trackmania.Event.OnCapture</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a landmark is captured.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"players": ["Player1", "Player2", "Player3"], //< Logins of the players who were on the landmark when it was captured<br>
+			"landmark": { //< Info about the captured landmark<br>
+				"tag": "LandmarkTag",<br>
+				"order": 5,<br>
+				"id": "#3",<br>
+				"position": { "x": 87.6, "y": 10.0, "z": 84.5 }<br>
+			}
+		}"
+	]
+	</code></td>
+  </tr>
+ <tr>
+    <td>### Trackmania.Event.OnShotDeny
+</td>
+    <td>* Name: Trackmania.Event.OnShotDeny</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a player denies a projectile.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"shooter": "ShooterLogin", //< Login of the player who denied the projectile<br>
+			"victim": "VictimLogin", //< Login of the player who got denied<br>
+			"shooterweapon": 1, //< Id of the weapon [1-Laser, 2-Rocket, 3-Nucleus, 5-Arrow]<br>
+			"victimweapon": 2 //< Id of the weapon [1-Laser, 2-Rocket, 3-Nucleus, 5-Arrow]<br>
+		}"
+	]
+	</code></td>
+  </tr>
+ <tr>
+    <td>### Trackmania.Event.OnFallDamage
+</td>
+    <td>* Name: Trackmania.Event.OnFallDamage</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a player suffers fall damage.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"victim": "VictimLogin", //< Login of the player who fell<br>
+		}"
+	]
+	</code></td>
+  </tr>
+ <tr>
+    <td>### Trackmania.Event.OnCommand
+</td>
+    <td>* Name: Trackmania.Event.OnCommand</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a command is executed on the server.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"name": "CommandName", //< Name of the command<br>
+			"value": { //< The value passed by the command<br>
+				"boolean": true,<br>
+				"integer": 123,<br>
+				"real": 123.456,<br>
+				"text": "an example value"<br>
+			}
+		}"
+	]
+	</code></td>
+  </tr>
+ <tr>
+    <td>### Trackmania.Event.OnPlayerAdded
+</td>
+    <td>* Name: Trackmania.Event.OnPlayerAdded</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a player joins the server.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"login": "PlayerLogin",<br>
+			"accountid": "45b9cf1e-3c97-4753-ac63-ac61b48b4bb7",<br>
+			"name": "Name of the player",<br>
+			"team": 0,<br>
+			"zone": "World|Europe|France|Outre-mer|Reunion",<br>
+			"language": "en",<br>
+			"ladderrank": 123456,<br>
+			"ladderpoints": 789.321<br>
+		}"
+	]
+	</code></td>
+  </tr>
+   <tr>
+    <td>### Trackmania.Event.OnPlayerRemoved
+</td>
+    <td>* Name: Trackmania.Event.OnPlayerRemoved</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a player leaves the server.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"login": "PlayerLogin",<br>
+			"accountid": "45b9cf1e-3c97-4753-ac63-ac61b48b4bb7"<br>
+		}"
+	]
+	</code></td>
+  </tr>
+   <tr>
+    <td>### Trackmania.Event.OnPlayerRequestRespawn
+</td>
+    <td>* Name: Trackmania.Event.OnPlayerRequestRespawn</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a player presses the respawn button.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"login": "PlayerLogin",<br>
+			"accountid": "45b9cf1e-3c97-4753-ac63-ac61b48b4bb7"<br>
+		}"
+	]
+	</code></td>
+  </tr>
+     <tr>
+    <td>### Trackmania.Event.OnActionCustomEvent
+</td>
+    <td>* Name: Trackmania.Event.OnActionCustomEvent</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when an action triggers a custom event.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"login": "PlayerLogin",<br>
+			"accountid": "45b9cf1e-3c97-4753-ac63-ac61b48b4bb7"<br>
+		}"
+	]
+	</code></td>
+  </tr>
+  <tr>
+    <td>### Trackmania.Event.OnActionEvent
+</td>
+    <td>* Name: Trackmania.Event.OnActionEvent</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a player triggers an action.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"login": "PlayerLogin", //< Login of the player who triggered the action<br>
+			"accountid": "45b9cf1e-3c97-4753-ac63-ac61b48b4bb7",<br>
+			"actioninput": "" //< The input pressed to trigger the action<br>
+		}"
+	]
+	</code></td>
+  </tr></td>
+  </tr>
+  <tr>
+    <td>### Trackmania.Event.OnPlayerTouchesObject
+</td>
+    <td>* Name: Trackmania.Event.OnPlayerTouchesObject</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a player touches an object.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"login": "PlayerLogin", //< Login of the player who touched the object<br>
+			"accountid": "45b9cf1e-3c97-4753-ac63-ac61b48b4bb7",<br>
+			"objectid": "#456", //< The id of the object<br>
+			"modelid": "#123", //< The id of the object model<br>
+			"modelname": "ObjectName" //< The name of the object model<br>
+		}"
+	]
+	</code></td>
+  </tr></td>
+  </tr>
+    <tr>
+    <td>### Trackmania.Event.OnPlayerTriggersSector
+</td>
+    <td>* Name: Trackmania.Event.OnPlayerTriggersSector</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a player triggers a sector.</td>
+    <td>* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"login": "PlayerLogin", //< Login of the player who triggered the sector<br>
+			"accountid": "45b9cf1e-3c97-4753-ac63-ac61b48b4bb7",<br>
+			"sectorid": "#123" //< Id of the triggered sector<br>
+		}"
+	]
+	</code></td>
+  </tr></td>
+  </tr>
+      <tr>
+    <td>### Trackmania.Event.OnPlayerThrowsObject
+</td>
+    <td>* Name: Trackmania.Event.OnPlayerThrowsObject</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a player throws an object.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"login": "PlayerLogin", //< Login of the player who threw the object<br>
+			"accountid": "45b9cf1e-3c97-4753-ac63-ac61b48b4bb7",<br>
+			"objectid": "#456", //< The id of the object<br>
+			"modelid": "#123", //< The id of the object model<br>
+			"modelname": "ObjectName" //< The name of the object model<br>
+		}"
+	]
+	</code></td>
+  </tr></td>
+  </tr>
+        <tr>
+    <td>### Trackmania.Event.OnPlayerRequestActionChange
+</td>
+    <td>* Name: Trackmania.Event.OnPlayerRequestActionChange</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a player requests to use another action.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"login": "PlayerLogin", //< Login of the player who requested a new action<br>
+			"accountid": "45b9cf1e-3c97-4753-ac63-ac61b48b4bb7",<br>
+			"actionchange": 1 //< Can be -1 (request previous action) or 1 (request next action)<br>
+		}"
+	]
+	</code></td>
+  </tr></td>
+  </tr>
+  <tr>
+    <td>### Trackmania.Event.OnPlayerTriggersWaypoint
+</td>
+    <td>* Name: Trackmania.Event.OnPlayerTriggersWaypoint</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a player triggers a waypoint in the map.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"login": "PlayerLogin", //< Login of the player who requested a new action<br>
+			"accountid": "45b9cf1e-3c97-4753-ac63-ac61b48b4bb7",<br>
+			"racetime": 123456, //< Total race time in milliseconds<br>
+			"checkpointinrace": 3, //< Number of checkpoints crossed since the beginning of the race minus one (index of the checkpoint in the curracecheckpoints array)<br>
+			"checkpointinlap": 0, //< Number of checkpoints crossed since the beginning of the lap minus one (index of the checkpoint in the curlapcheckpoints array)<br>
+			"curracecheckpoints": [1234, 5200, 7580, 9000], //< Checkpoints times since the beginning of the race. Empty by default, use the `Trackmania.Event.SetCurRaceCheckpointsMode` method to control how this array is filled.<br>
+			"curlapcheckpoints": [1420], //< Checkpoints time since the beginning of the lap. Empty by default, use the `Trackmania.Event.SetCurLapCheckpointsMode` method to control how this array is filled.<br>
+			"blockid": "#123", //< Id of the checkpoint block<br>
+			"speed": 456.45 //< Speed of the player in km/h<br>
+		}"
+	]
+	</code></td>
+  </tr></td>
+  </tr>
+  <tr>
+    <td>### Trackmania.Event.OnVehicleArmorEmpty
+</td>
+    <td>* Name: Trackmania.Event.OnVehicleArmorEmpty</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a player requests to use another action.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"shooter": "ShooterLogin", //< Login of the player who shot<br>
+			"victim": "VictimLogin", //< Login of the player who got hit<br>
+			"weapon": 2, //< Id of the weapon [1-Laser, 2-Rocket, 3-Nucleus, 5-Arrow]<br>
+			"distance": 45.578, //< Distance between the victim and the shooter at the time of the hit<br>
+			"shooterposition": { "x": 19.3, "y": 9.3", "z": 59.9 }, //< Position of the shooter when their projectile hits the victim<br>
+			"victimposition": { "x": 87.6, "y": 10.0, "z": 84.5 } //< Position of the victim when they have hit by the projectile<br>
+		}"
+	]
+	</code></td>
+  </tr></td>
+  </tr>
+  <tr>
+    <td>### Trackmania.Event.OnVehicleCollision
+</td>
+    <td>* Name: Trackmania.Event.OnVehicleCollision</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a player requests to use another action.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"shooter": "ShooterLogin", //< Login of the player who shot<br>
+			"victim": "VictimLogin", //< Login of the player who got hit<br>
+			"damage": 100, //< Amount of damaged done by the hit<br>
+			"shooterposition": { "x": 19.3, "y": 9.3", "z": 59.9 }, //< Position of the shooter when their projectile hits the victim<br>
+			"victimposition": { "x": 87.6, "y": 10.0, "z": 84.5 } //< Position of the victim when they have hit by the projectile<br>
+		}"
+	]
+	</code></td>
+  </tr></td>
+  </tr>
+  <tr>
+    <td>### Trackmania.Event.OnVehicleVsVehicleCollision
+</td>
+    <td>* Name: Trackmania.Event.OnVehicleVsVehicleCollision</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a player requests to use another action.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"shooter": "ShooterLogin", //< Login of the player who shot<br>
+			"victim": "VictimLogin", //< Login of the player who got hit<br>
+			"damage": 100, //< Amount of damaged done by the hit<br>
+			"shooterposition": { "x": 19.3, "y": 9.3", "z": 59.9 }, //< Position of the shooter when their projectile hits the victim<br>
+			"victimposition": { "x": 87.6, "y": 10.0, "z": 84.5 } //< Position of the victim when they have hit by the projectile<br>
+		}"
+	]
+	</code></td>
+  </tr></td>
+  </tr>
+    <tr>
+    <td>### Trackmania.Event.StartLine
+</td>
+    <td>* Name: Trackmania.Event.StartLine</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a player starts to race (at the end of the 3,2,1,GO! sequence).</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"login": "PlayerLogin",<br>
+			"accountid": "abcd-efgh-ijkl-mnop-qrstuvwxyz01"<br>
+		}"
+	]
+	</code></td>
+  </tr></td>
+  </tr>
+      <tr>
+    <td>### Trackmania.Event.WayPoint
+</td>
+    <td>* Name: Trackmania.Event.WayPoint</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a player crosses a checkpoint.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"login": "PlayerLogin",<br>
+			"accountid": "45b9cf1e-3c97-4753-ac63-ac61b48b4bb7",<br>
+			"racetime": 123456, //< Total race time in milliseconds<br>
+			"laptime": 45678, //< Lap time in milliseconds<br>
+			"stuntsscore": 3457, //< Stunts score<br>
+			"checkpointinrace": 3, //< Number of checkpoints crossed since the beginning of the race minus one (index of the checkpoint in the curracecheckpoints array)<br>
+			"checkpointinlap": 0, //< Number of checkpoints crossed since the beginning of the lap minus one (index of the checkpoint in the curlapcheckpoints array)<br>
+			"isendrace": false, //< Is it the finish line checkpoint<br>
+			"isendlap": false, //< Is it the multilap checkpoint<br>
+			"curracecheckpoints": [1234, 5200, 7580, 9000], //< Checkpoints times since the beginning of the race. Empty be default, use the `Trackmania.Event.SetCurRaceCheckpointsMode` method to control how this array is filled.<br>
+			"curlapcheckpoints": [1420], //< Checkpoints time since the beginning of the lap. Empty by default, use the `Trackmania.Event.SetCurLapCheckpointsMode` method to control how this array is filled.<br>
+			"blockid": "#123", //< Id of the checkpoint block<br>
+			"speed": 456.45, //< Speed of the player in km/h<br>
+		}"
+	]
+	</code></td>
+  </tr></td>
+  </tr>
+      <tr>
+    <td>### Trackmania.Event.GiveUp
+</td>
+    <td>* Name: Trackmania.Event.GiveUp</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a player gives up and restart from the beginning.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"login": "PlayerLogin",<br>
+			"accountid": "45b9cf1e-3c97-4753-ac63-ac61b48b4bb7"<br>
+		}"
+	]
+	</code></td>
+  </tr></td>
+  </tr>
+      <tr>
+    <td>### Trackmania.Event.SkipOutro
+</td>
+    <td>* Name: Trackmania.Event.SkipOutro</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a player skip the outro at the end of their race.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"login": "PlayerLogin",<br>
+			"accountid": "45b9cf1e-3c97-4753-ac63-ac61b48b4bb7"<br>
+		}"
+	]
+	</code></td>
+  </tr></td>
+  </tr>
+      <tr>
+    <td>### Trackmania.Event.Respawn
+</td>
+    <td>* Name: Trackmania.Event.Respawn</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a player respawns at the previous checkpoint.</td>
+    <td>
+* Data:
+	- Version >=2.0.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"login": "PlayerLogin",<br>
+			"accountid": "45b9cf1e-3c97-4753-ac63-ac61b48b4bb7",<br>
+			"nbrespawns": 5, //< Number of respawns since the beginning of the race<br>
+			"racetime": 123456, //< Total race time in milliseconds<br>
+			"laptime": 45678, //< Lap time in milliseconds<br>
+			"stuntsscore": 3457, //< Stunts score<br>
+			"checkpointinrace": 13, //< Number of checkpoints crossed since the beginning of the race minus one<br>
+			"checkpointinlap": 4, //< Number of checkpoints crossed since the beginning of the lap minus one<br>
+			"speed": 456.45 //< Speed of the player in km/h<br>
+		}"
+	]
+	</code></td>
+  </tr></td>
+  </tr>
+      <tr>
+    <td>### Trackmania.Event.Eliminated
+</td>
+    <td>* Name: Trackmania.Event.Eliminated</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a player is eliminated by an obstacle.</td>
+    <td>
+* Data:
+	- Version >=3.7.0:
+	<code>
+	[
+		"{<br>
+			"time": 123456, //< Server time when the event occurred<br>
+			"login": "PlayerLogin",<br>
+			"accountid": "45b9cf1e-3c97-4753-ac63-ac61b48b4bb7",<br>
+		}"
+	]
+	</code></td>
+  </tr></td>
+  </tr>
+      <tr>
+    <td>### Trackmania.Scores
+</td>
+    <td>* Name: Trackmania.Scores</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Teams and players scores.</td>
+    <td>
+* Data:
+	- Version >=2.0.0: 
+	<code>
+	[
+		"{<br>
+			"responseid": "xyz", //< Facultative id passed by a script event<br>
+			"section": "EndRound", //< Current progress of the match. Can be "" | "EndRound" | "EndMap" | "EndMatch"<br>
+			"useteams": true, //< The game mode use teams or not<br>
+			"winnerteam": 1, //< The team who won the match, can be -1 (no winner), 0 or 1<br>
+			"winnerplayer": "PlayerLogin1", //< Login of the player who won the match<br>
+			"teams": [ //< Scores of the teams<br>
+				{
+					"id": 0,<br>
+					"name": "blue",<br>
+					"roundpoints": 498, <br>
+					"mappoints": 46,<br>
+					"matchpoints": 9,<br>
+				},<br>
+				{
+					"id": 1,<br>
+					"name": "red",<br>
+					"roundpoints": 365,<br>
+					"mappoints": 45,<br>
+					"matchpoints": 2,<br>
+				}
+			],<br><br>
+			"players": [ //< Scores of the players<br>
+				{
+					"login": "PlayerLogin1",<br>
+					"accountid": "45b9cf1e-3c97-4753-ac63-ac61b48b4bb7",<br>
+					"name": "Player#1",<br>
+					"rank": 1, //< Rank of the player in the match. This rank is the one used internally by the game mode. It can have an unexpected value sometimes. If you need to create a ranking based on a specific criterion, you should do it on your side and not rely on this value.<br>
+					"roundpoints": 456,<br>
+					"mappoints": 345,<br>
+					"matchpoints": 64,<br>
+					"bestracetime": 456789, //< Best race time in milliseconds<br>
+					"bestracecheckpoints": [1230, 7546, 19045, 456789], //< Checkpoints times during best race<br>
+					"bestlaptime": 9874, //< Best lap time in milliseconds<br>
+					"bestlapcheckpoints": [2458, 9874], //< Checkpoints times during best lap<br>
+					"prevracetime": 534824, //< Previous race time in milliseconds<br>
+					"prevracecheckpoints": [3250, 56845, 98745, 534824] //< Checkpoints times during the previous race<br>
+				},
+				{
+					"login": "PlayerLogin2",<br>
+					"accountid": "6dde0f3e-ed3f-4216-97b0-ffed70601679",<br>
+					"name": "Player#2",<br>
+					"rank": 2,<br>
+					"roundpoints": 234,<br>
+					"mappoints": 123,<br>
+					"matchpoints": 32,<br>
+					"bestracetime": 49854, //< Best race time in milliseconds<br>
+					"bestracecheckpoints": [3215, 94562, 26845, 49854], //< Checkpoints times during best race<br>
+					"bestlaptime": 15624, //< Best lap time in milliseconds<br>
+					"bestlapcheckpoints": [4582, 15624], //< Checkpoints times during best lap<br>
+					"prevracetime": 75642, //< Previous race time in milliseconds<br>
+					"prevracecheckpoints": [9845, 32658, 52489, 75642] //< Checkpoints times during the previous race<br>
+				}
+			]
+		}"
+	]
+	</code><br><br>
+	- Version >=2.1.1: 
+	The section parameter can take one new value: "PreEndRound".<br>
+	<code>
+	[
+		"{<br>
+			...<br>
+			"section": "EndRound", //< Current progress of the match. Can be "" | "PreEndRound" | "EndRound" | "EndMap" | "EndMatch"<br>
+			...<br>
+		}"
+	]
+	<code><br><br>
+	- Version >=3.3.0: 
+	The player has a new parameter `team`.<br>
+	<code>
+	[
+		"{<br>
+			...<br>
+			"players": [ //< Scores of the players<br>
+				{
+					"login": "PlayerLogin1",<br>
+					"accountid": "45b9cf1e-3c97-4753-ac63-ac61b48b4bb7",<br>
+					"name": "Player#1",<br>
+					"team": 0, //< -1 when not in team based mode, 0 or more when teams are enabled<br>
+					...
+				},<br>
+				{
+					"login": "PlayerLogin2",<br>
+					"accountid": "6dde0f3e-ed3f-4216-97b0-ffed70601679",<br>
+					"name": "Player#2",<br>
+					"team": 1, //< -1 when not in team based mode, 0 or more when teams are enabled<br>
+					...
+				}
+			]
+		}"
+	]
+	</code></td>
+  </tr></td>
+  </tr>
+        <tr>
+    <td>### Trackmania.MatchBestPlayer
+</td>
+    <td>* Name: Trackmania.MatchBestPlayer</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent at the end of the match with the accountid of the best player of the match</td>
+    <td>
+* Data:
+	- Version >=3.4.0:
+	<code>
+	[
+		"{<br>
+			"login": "PlayerLogin", //< login of the best player<br>
+			"accountid": "45b9cf1e-3c97-4753-ac63-ac61b48b4bb7" //< account id of the best player<br>
+		}"
+	]
+	</code></td>
+  </tr></td>
+  </tr>
+        <tr>
+    <td>### Trackmania.WarmUp.Start
+</td>
+    <td>* Name: Trackmania.WarmUp.Start</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the warm up sequence start.</td>
+    <td>
+* Data:
+	- Version >=2.5.0:
+	<code>
+	[
+		"{}"
+	]
+	</code></td>
+  </tr></td>
+  </tr>
+        <tr>
+    <td>### Trackmania.WarmUp.StartRound
+</td>
+    <td>* Name: Trackmania.WarmUp.StartRound</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a warm up round start.</td>
+    <td>
+* Data:
+	- Version >=2.5.0:
+	<code>
+	[
+		"{<br>
+			"current": 2,	//< The number of the current round<br>
+			"total": 3 //< The total number of warm up rounds<br>
+		}"
+	]
+	</code></td>
+  </tr></td>
+  </tr>
+<tr>
+    <td>### Trackmania.WarmUp.EndRound
+</td>
+    <td>* Name: Trackmania.WarmUp.EndRound</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when a warm up round end.</td>
+    <td>
+* Data:
+	- Version >=2.5.0:
+	<code>
+	[
+		"{<br>
+			"current": 2,	//< The number of the current round<br>
+			"total": 3 //< The total number of warm up rounds<br>
+		}"
+	]
+	</code></td>
+  </tr></td>
+  </tr>
+<tr>
+    <td>### Trackmania.WarmUp.End
+</td>
+    <td>* Name: Trackmania.WarmUp.End</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Callback sent when the warm up sequence end.</td>
+    <td>
+* Data:
+	- Version >=2.5.0:
+	<code>
+	[
+		"{}"
+	]
+	</code></td>
+  </tr></td>
+  </tr>
+<tr>
+    <td>### Trackmania.WarmUp.Status
+</td>
+    <td>* Name: Trackmania.WarmUp.Status</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: The status of Trackmania's the warmup.</td>
+    <td>
+* Data:
+	- Version >=2.5.0:
+	<code>
+	[
+		"{<br>
+			"responseid": "xyz", //< Facultative id passed by a script event<br>
+			"available": true, //< true if a warmup is available in the game mode, false otherwise<br>
+			"active": true //< true if a warmup is ongoing, false otherwise<br>
+		}"
+	]
+	</code></td>
+  </tr></td>
+  </tr>
+<tr>
+    <td>### Trackmania.PointsRepartition
+</td>
+    <td>* Name: Trackmania.PointsRepartition</td>
+    <td>* Type: CallbackArray</td>
+    <td>* Description: Points repartition in rounds based modes.</td>
+    <td>
+* Data:
+	- Version >=2.5.0:
+	<code>
+	[
+		"{<br>
+			"responseid": "xyz", //< Facultative id passed by a script event<br>
+			"pointsrepartition": [10, 6, 4, 3, 2, 1]	//< The points repartition<br>
+		}"
+	]
+	</code></td>
+  </tr></td>
+  </tr>
+</table>
+</html>
